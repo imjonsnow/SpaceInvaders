@@ -104,6 +104,7 @@ public class Screen extends JPanel implements KeyListener
 	
 	//initialize shot vector and details
 	public static ObjectVector projectileVector = new ObjectVector(0, -8);
+	public static ObjectVector alienVector = new ObjectVector(0, 7);
 	int fireFromX;
 	int fireFromY;
 	
@@ -606,13 +607,13 @@ public class Screen extends JPanel implements KeyListener
 				ScreenObject obj = screenObjects.get(i);
 				if (obj instanceof Invader) {
 					if (Math.random() < .0005 + (.0005*(level.getLevelNumber()/2))){
-						timer.stop();
+						//timer.stop();
 						fireFromX = (int) obj.getLocation().getX();
 						fireFromY = (int) obj.getLocation().getY();
 						AlienProjectile alienShot = new AlienProjectile(new Point(fireFromX, fireFromY), new Rectangle(7, 30), alienShotImg.getImage(), 180);
-						alienShot.setArbitraryVector(new ObjectVector(0,7));
+						alienShot.setArbitraryVector(alienVector);
 						screenObjects.add(alienShot);
-						timer.start();
+						//timer.start();
 						File shotSound = new File("invaderShot.WAV");
 						playSound(shotSound);
 					}
